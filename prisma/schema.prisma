@@ -1,0 +1,199 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum EventType {
+  FESTIVAL
+  CUSTOM
+  NATURE
+  CULTURAL
+  RELIGIOUS
+  SPORT
+  MARKET
+  ROYAL
+  PROTEST
+  PARADE
+  VIGIL
+  FAIR
+}
+
+enum EventStatus {
+  SCHEDULED
+  CHANGED
+  CANCELLED
+  UNCONFIRMED
+}
+
+enum IndoorOutdoor {
+  INDOOR
+  OUTDOOR
+  BOTH
+}
+
+enum SourceType {
+  MANUAL
+  CSV
+  WEB
+  ORGANIZER
+  DIRECTORY
+}
+
+enum DuplicateStatus {
+  PENDING
+  MERGED
+  DISMISSED
+}
+
+// ─── Models ───────────────────────────────────────────────────────────────────
+
+model Event {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  title       String
+  description String?     @db.Text
+  type        EventType
+  tags        String[]
+  status      EventStatus @default(SCHEDULED)
+
+  // Dates & times
+  startDate       DateTime
+  endDate         DateTime?
+  startTime       String?   // "HH:MM" 24-hour
+  endTime         String?
+  allDay          Boolean   @default(true)
+  recurringAnnual Boolean   @default(false)
+  oneOff          Boolean   @default(false)
+
+  // Geography
+  region          String    // e.g. "London", "Yorkshire", "Scotland"
+  county          String?
+  city            String?
+  venueName       String?
+  address         String?
+  postcode        String?
+  lat             Float?
+  lng             Float?
+  routeDescription String?  @db.Text  // for marches / processions
+
+  // Organiser
+  organizerName   String?
+
+  // Practical info
+  free            Boolean?
+  indoorOutdoor   IndoorOutdoor?
+  accessibilityNotes String? @db.Text
+  travelNotes     String?  @db.Text
+  nearestStation  String?
+
+  // Admin / editorial
+  editorialNotes  String?  @db.Text
+  featured        Boolean  @default(false)
+  archived        Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  photoMeta   PhotoMeta?
+  sources     EventSource[]
+  saves       UserSave[]
+  duplicatesA DuplicateCandidate[] @relation("EventA")
+  duplicatesB DuplicateCandidate[] @relation("EventB")
+
+  @@index([startDate])
+  @@index([region])
+  @@index([type])
+  @@index([featured])
+  @@index([archived])
+}
+
+model PhotoMeta {
+  id      String @id @default(cuid())
+  eventId String @unique
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  // Scores (1–5)
+  photoPotentialScore Int?
+  visualIntensity     Int?
+  colorRichness       Int?
+
+  // Crowd & scale
+  crowdSizeEstimate String? // "hundreds" | "thousands" | "tens of thousands"
+
+  // Visual elements (boolean flags)
+  costumeCeremonial  Boolean @default(false)
+  fireSmokeLight     Boolean @default(false)
+  bannersFlagsCandles Boolean @default(false)
+  processionElements Boolean @default(false)
+  ritualSignificance Boolean @default(false)
+  protestVisibility  Boolean @default(false)
+  routeMoving        Boolean @default(false) // moving procession vs static gathering
+
+  // Timing
+  daytimeNightValue String? // "daytime" | "night" | "both"
+  bestArrivalTime   String?
+
+  // Field notes
+  bestViewingPosition String? @db.Text
+  lensSuggestion      String? @db.Text
+  safetyNotes         String? @db.Text
+  previousYearNotes   String? @db.Text
+}
+
+model EventSource {
+  id      String @id @default(cuid())
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  sourceUrl       String?
+  sourceType      SourceType
+  rawData         Json?
+  confidenceScore Int?       // 1–100
+  lastCheckedAt   DateTime?
+  notes           String?
+
+  createdAt DateTime @default(now())
+
+  @@index([eventId])
+}
+
+model UserSave {
+  id      String @id @default(cuid())
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  sessionId      String   // browser session or user id when auth added
+  shortlisted    Boolean  @default(false)
+  personalNotes  String?  @db.Text
+  postEventNotes String?  @db.Text
+
+  createdAt DateTime @default(now())
+
+  @@unique([eventId, sessionId])
+  @@index([sessionId])
+}
+
+model DuplicateCandidate {
+  id       String @id @default(cuid())
+  eventAId String
+  eventA   Event  @relation("EventA", fields: [eventAId], references: [id])
+  eventBId String
+  eventB   Event  @relation("EventB", fields: [eventBId], references: [id])
+
+  similarityScore Float
+  status          DuplicateStatus @default(PENDING)
+  reviewedAt      DateTime?
+  notes           String?
+
+  createdAt DateTime @default(now())
+
+  @@unique([eventAId, eventBId])
+}

@@ -1,65 +1,117 @@
-import Image from "next/image";
+import { prisma } from "@/lib/prisma";
+import { EventType } from "@prisma/client";
+import EventCard from "@/components/EventCard";
 
-export default function Home() {
+const REGIONS = [
+  "London","South East","South West","East of England",
+  "East Midlands","West Midlands","Yorkshire",
+  "North West","North East","Scotland","Wales","Northern Ireland",
+];
+
+const EVENT_TYPES: EventType[] = [
+  "FESTIVAL","CUSTOM","NATURE","CULTURAL","RELIGIOUS",
+  "SPORT","MARKET","ROYAL","PROTEST","PARADE","VIGIL","FAIR",
+];
+
+const MONTHS = ["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+interface PageProps {
+  searchParams: Promise<{
+    region?: string;
+    type?: string;
+    month?: string;
+    q?: string;
+    minScore?: string;
+  }>;
+}
+
+export default async function Home({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const { region, type, month, q, minScore } = params;
+
+  const where = {
+    archived: false,
+    ...(region && { region }),
+    ...(type   && { type: type as EventType }),
+    ...(month  && {
+      startDate: {
+        gte: new Date(`2026-${month.padStart(2, "0")}-01`),
+        lt:  new Date(`2026-${String(parseInt(month) + 1).padStart(2, "0")}-01`),
+      },
+    }),
+    ...(q && {
+      OR: [
+        { title:       { contains: q, mode: "insensitive" as const } },
+        { description: { contains: q, mode: "insensitive" as const } },
+        { city:        { contains: q, mode: "insensitive" as const } },
+      ],
+    }),
+    ...(minScore && {
+      photoMeta: { photoPotentialScore: { gte: parseInt(minScore) } },
+    }),
+  };
+
+  const [events, total] = await Promise.all([
+    prisma.event.findMany({
+      where,
+      include: { photoMeta: true },
+      orderBy: [{ featured: "desc" }, { startDate: "asc" }],
+      take: 100,
+    }),
+    prisma.event.count({ where }),
+  ]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold text-slate-800">📷 England Photo Events</h1>
+        <p className="text-sm text-slate-500">Festivals, protests, customs &amp; nature moments worth shooting</p>
+      </div>
+
+      <form method="GET" className="flex flex-wrap gap-3">
+        <input
+          name="q"
+          defaultValue={q}
+          placeholder="Search events, locations…"
+          className="flex-1 min-w-48 border border-slate-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white text-slate-800"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <select name="region" defaultValue={region ?? ""} className="border border-slate-200 rounded-xl px-3 py-2 text-sm bg-white text-slate-700">
+          <option value="">All regions</option>
+          {REGIONS.map((r) => <option key={r} value={r}>{r}</option>)}
+        </select>
+        <select name="type" defaultValue={type ?? ""} className="border border-slate-200 rounded-xl px-3 py-2 text-sm bg-white text-slate-700">
+          <option value="">All types</option>
+          {EVENT_TYPES.map((t) => <option key={t} value={t}>{t.charAt(0) + t.slice(1).toLowerCase()}</option>)}
+        </select>
+        <select name="month" defaultValue={month ?? ""} className="border border-slate-200 rounded-xl px-3 py-2 text-sm bg-white text-slate-700">
+          <option value="">All months</option>
+          {MONTHS.slice(1).map((m, i) => <option key={m} value={String(i + 1)}>{m}</option>)}
+        </select>
+        <select name="minScore" defaultValue={minScore ?? ""} className="border border-slate-200 rounded-xl px-3 py-2 text-sm bg-white text-slate-700">
+          <option value="">Any photo potential</option>
+          <option value="3">★★★+</option>
+          <option value="4">★★★★+</option>
+          <option value="5">★★★★★ only</option>
+        </select>
+        <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2 rounded-xl transition-colors">Filter</button>
+        <a href="/" className="text-sm text-slate-500 hover:text-slate-700 px-3 py-2 self-center">Reset</a>
+      </form>
+
+      <p className="text-sm text-slate-500">
+        Showing <strong>{events.length}</strong> of {total} events
+      </p>
+
+      {events.length === 0 ? (
+        <div className="text-center py-16 text-slate-400">
+          <p className="text-4xl mb-3">📷</p>
+          <p className="font-medium">No events match your filters</p>
+          <a href="/" className="mt-3 text-sm text-indigo-600 underline block">Reset filters</a>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          {events.map((e) => <EventCard key={e.id} event={e} />)}
         </div>
-      </main>
+      )}
     </div>
   );
 }
