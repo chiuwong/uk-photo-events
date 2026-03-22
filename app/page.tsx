@@ -61,51 +61,56 @@ export default async function Home({ searchParams }: PageProps) {
     prisma.event.count({ where }),
   ]);
 
+  const select = "border border-gray-300 bg-white text-black text-sm px-3 py-2 focus:outline-none focus:border-black";
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-800">📷 UK Photo Events</h1>
-        <p className="text-sm text-slate-500">Festivals, protests, customs &amp; nature moments worth shooting</p>
+    <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
+      {/* Header */}
+      <div className="border-b border-black pb-4">
+        <h1 className="text-3xl font-bold text-black tracking-tight">UK Photo Events</h1>
+        <p className="text-sm text-gray-500 mt-1">Festivals, protests, customs &amp; nature moments worth shooting</p>
       </div>
 
-      <form method="GET" className="flex flex-wrap gap-3">
+      {/* Filters */}
+      <form method="GET" className="flex flex-wrap gap-2">
         <input
           name="q"
           defaultValue={q}
-          placeholder="Search events, locations…"
-          className="flex-1 min-w-48 border border-slate-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white text-slate-800"
+          placeholder="Search…"
+          className="flex-1 min-w-48 border border-gray-300 bg-white text-black text-sm px-3 py-2 focus:outline-none focus:border-black"
         />
-        <select name="region" defaultValue={region ?? ""} className="border border-slate-200 rounded-xl px-3 py-2 text-sm bg-white text-slate-700">
+        <select name="region" defaultValue={region ?? ""} className={select}>
           <option value="">All regions</option>
           {REGIONS.map((r) => <option key={r} value={r}>{r}</option>)}
         </select>
-        <select name="type" defaultValue={type ?? ""} className="border border-slate-200 rounded-xl px-3 py-2 text-sm bg-white text-slate-700">
+        <select name="type" defaultValue={type ?? ""} className={select}>
           <option value="">All types</option>
           {EVENT_TYPES.map((t) => <option key={t} value={t}>{t.charAt(0) + t.slice(1).toLowerCase()}</option>)}
         </select>
-        <select name="month" defaultValue={month ?? ""} className="border border-slate-200 rounded-xl px-3 py-2 text-sm bg-white text-slate-700">
+        <select name="month" defaultValue={month ?? ""} className={select}>
           <option value="">All months</option>
           {MONTHS.slice(1).map((m, i) => <option key={m} value={String(i + 1)}>{m}</option>)}
         </select>
-        <select name="minScore" defaultValue={minScore ?? ""} className="border border-slate-200 rounded-xl px-3 py-2 text-sm bg-white text-slate-700">
-          <option value="">Any photo potential</option>
+        <select name="minScore" defaultValue={minScore ?? ""} className={select}>
+          <option value="">Any score</option>
           <option value="3">★★★+</option>
           <option value="4">★★★★+</option>
           <option value="5">★★★★★ only</option>
         </select>
-        <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2 rounded-xl transition-colors">Filter</button>
-        <a href="/" className="text-sm text-slate-500 hover:text-slate-700 px-3 py-2 self-center">Reset</a>
+        <button type="submit" className="bg-black text-white text-sm font-medium px-5 py-2 hover:bg-gray-800 transition-colors">
+          Filter
+        </button>
+        <a href="/" className="text-sm text-gray-400 hover:text-black px-3 py-2 self-center">Reset</a>
       </form>
 
-      <p className="text-sm text-slate-500">
-        Showing <strong>{events.length}</strong> of {total} events
+      <p className="text-xs text-gray-400 uppercase tracking-widest">
+        {events.length} of {total} events
       </p>
 
       {events.length === 0 ? (
-        <div className="text-center py-16 text-slate-400">
-          <p className="text-4xl mb-3">📷</p>
-          <p className="font-medium">No events match your filters</p>
-          <a href="/" className="mt-3 text-sm text-indigo-600 underline block">Reset filters</a>
+        <div className="text-center py-24 border border-gray-200">
+          <p className="text-gray-400 text-sm">No events match your filters</p>
+          <a href="/" className="mt-3 text-sm text-black underline block">Reset filters</a>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
