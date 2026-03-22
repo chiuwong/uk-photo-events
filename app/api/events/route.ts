@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { EventType, EventStatus, Prisma } from "@prisma/client";
 
@@ -61,4 +63,40 @@ export async function GET(req: NextRequest) {
   ]);
 
   return NextResponse.json({ events, total, limit, offset });
+}
+
+export async function POST(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const body = await req.json();
+  const { photoMeta, ...eventData } = body;
+
+  // Generate slug from title + date
+  const base = (eventData.title as string)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  const datePart = (eventData.startDate as string).replace(/-/g, "").slice(0, 8);
+  let slug = `${base}-${datePart}`;
+
+  // Ensure unique slug
+  const existing = await prisma.event.findUnique({ where: { slug } });
+  if (existing) slug = `${slug}-${Date.now()}`;
+
+  const event = await prisma.event.create({
+    data: {
+      ...eventData,
+      slug,
+      startDate: new Date(eventData.startDate),
+      endDate: eventData.endDate ? new Date(eventData.endDate) : undefined,
+      tags: eventData.tags ?? [],
+      ...(photoMeta && {
+        photoMeta: { create: photoMeta },
+      }),
+    },
+    include: { photoMeta: true },
+  });
+
+  return NextResponse.json(event, { status: 201 });
 }
