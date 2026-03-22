@@ -93,6 +93,10 @@ model Event {
   travelNotes     String?  @db.Text
   nearestStation  String?
 
+  // Links & media
+  imageUrl        String?
+  officialUrl     String?
+
   // Admin / editorial
   editorialNotes  String?  @db.Text
   featured        Boolean  @default(false)

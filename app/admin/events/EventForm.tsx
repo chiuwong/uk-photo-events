@@ -54,6 +54,8 @@ export default function EventForm({ event }: Props) {
     travelNotes: event?.travelNotes ?? "",
     routeDescription: event?.routeDescription ?? "",
     tags: event?.tags?.join(", ") ?? "",
+    imageUrl: event?.imageUrl ?? "",
+    officialUrl: event?.officialUrl ?? "",
   });
 
   const [photo, setPhoto] = useState({
@@ -176,6 +178,17 @@ export default function EventForm({ event }: Props) {
         <div>
           <label className={label}>Organiser</label>
           <input className={input} value={form.organizerName} onChange={(e) => setF("organizerName", e.target.value)} />
+        </div>
+        <div>
+          <label className={label}>Official website URL</label>
+          <input className={input} type="url" value={form.officialUrl} onChange={(e) => setF("officialUrl", e.target.value)} placeholder="https://..." />
+        </div>
+        <div>
+          <label className={label}>Image URL (paste a direct image link)</label>
+          <input className={input} type="url" value={form.imageUrl} onChange={(e) => setF("imageUrl", e.target.value)} placeholder="https://..." />
+          {form.imageUrl && (
+            <img src={form.imageUrl} alt="Preview" className="mt-2 rounded-xl h-32 object-cover" />
+          )}
         </div>
       </div>
 
