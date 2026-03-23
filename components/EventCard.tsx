@@ -54,7 +54,7 @@ export default function EventCard({ event }: Props) {
       )}
 
       {/* Body — two columns when photo notes exist */}
-      <div className={`p-6 ${hasPhotoNotes ? "grid grid-cols-[1fr_300px] gap-8" : "flex flex-col gap-5"}`}>
+      <div className={`p-6 ${hasPhotoNotes ? "flex flex-col gap-8 md:grid md:grid-cols-[1fr_300px]" : "flex flex-col gap-5"}`}>
 
         {/* LEFT: event info */}
         <div className="flex flex-col gap-4">
@@ -118,7 +118,7 @@ export default function EventCard({ event }: Props) {
 
         {/* RIGHT: photography notes */}
         {hasPhotoNotes && (
-          <div className="border-l border-gray-200 pl-8 flex flex-col gap-4">
+          <div className="border-t border-gray-200 pt-6 md:border-t-0 md:border-l md:pt-0 md:pl-8 flex flex-col gap-4">
             <p className="text-xs font-bold uppercase tracking-widest text-black">Photography notes</p>
 
             {pm?.crowdSizeEstimate && (
