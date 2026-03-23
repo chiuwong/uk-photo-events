@@ -45,6 +45,7 @@ interface ExtraEvent {
   routeMoving?: boolean;
   safetyNotes?: string;
   previousYearNotes?: string;
+  officialUrl?: string;
 }
 
 const Y = 2026;
@@ -83,6 +84,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     safetyNotes: "The scrum is intense. Stay on the edges unless you want to be pulled in.",
+    officialUrl: "https://haxeyhood.co.uk/",
   },
 
   {
@@ -113,6 +115,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     previousYearNotes: "Very accessible — the bear walks right past you on narrow streets. Brilliant for portraiture.",
+    officialUrl: "https://strawbear.org.uk/",
   },
 
   // ── FEBRUARY ───────────────────────────────────────────────────────────────
@@ -148,6 +151,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "The scrum is serious — clothes get ripped. Stay elevated or on the edges unless prepared to be in it.",
     previousYearNotes: "The toss from the pub window draws a huge crowd. Get there early to stake out a high vantage point on Long Street.",
+    officialUrl: "https://www.athherstoneballgame.co.uk/",
   },
 
   {
@@ -179,6 +183,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     safetyNotes: "The hug-up (scrum) is intense. River crossings are cold and chaotic. Waterproof your gear.",
+    officialUrl: "https://www.ashbourneshrovetide.co.uk/",
   },
 
   // ── MARCH ──────────────────────────────────────────────────────────────────
@@ -419,6 +424,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "daytime",
     routeMoving: true,
     bannersFlagsCandles: true,
+    officialUrl: "https://www.londonmarathon.com/",
   },
 
   // ── MAY ────────────────────────────────────────────────────────────────────
@@ -453,6 +459,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "Town gets extremely crowded. Book accommodation many months in advance.",
     previousYearNotes: "The narrow streets at night with torch light and singing are extraordinary. Day is more accessible but night has the magic.",
+    officialUrl: "https://www.padstowmayday.com/",
   },
 
   {
@@ -483,6 +490,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     previousYearNotes: "The formal morning dress against the slate Cornish streets creates a uniquely English surreal image.",
+    officialUrl: "https://www.helstonflora.org.uk/",
   },
 
   {
@@ -514,6 +522,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "The spectator hillside is steep and slippery. The bottom of the hill is dangerous from falling competitors. The event is unofficial — follow safety cordons.",
     previousYearNotes: "Telephoto from the upper spectator bank gives the best compression of the descent. Bottom of hill gives chaotic energy but requires fast reflexes.",
+    officialUrl: "https://www.cheese-rolling.co.uk/",
   },
 
   {
@@ -854,6 +863,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "Very crowded — keep bags zipped. Phone pickpocketing is common. Stay aware of your surroundings especially near sound systems.",
     previousYearNotes: "The masquerade costumes on Monday are extraordinary — feathers, sequins, and 6-foot headdresses. Get close on Kensington Park Road before the route fills at midday.",
+    officialUrl: "https://nhcarnival.org/",
   },
 
   {
@@ -1068,6 +1078,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     fireSmokeLight: false,
     previousYearNotes: "October has the best costumes and autumn light. The 199 steps at sunset with costumed goths is one of England's great photographic moments.",
+    officialUrl: "https://whitbygothweekend.co.uk/",
   },
 
   // ── NOVEMBER ───────────────────────────────────────────────────────────────
@@ -1105,6 +1116,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "Bangers are thrown into the crowd. Wear clothes you don't mind scorching. Be alert to burning debris. Very crowded — plan your exit route in advance.",
     previousYearNotes: "The flaming cross procession is the defining image. Slow shutter to blur torch movement. The town gets extremely crowded after 7pm — position yourself early.",
+    officialUrl: "https://lewesbonfirecouncil.org.uk/",
   },
 
   {
@@ -1138,6 +1150,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     routeMoving: true,
     fireSmokeLight: true,
+    officialUrl: "https://www.lordmayorsshow.london/",
   },
 
   {
@@ -1204,6 +1217,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     previousYearNotes: "The paper clock lanterns glow beautifully in the dark streets. Slow sync flash or purely ambient at ISO 3200. The beach bonfire reflects in the sea.",
+    officialUrl: "https://www.burningoftheclocks.co.uk/",
   },
 ];
 
@@ -1213,7 +1227,7 @@ async function main() {
   for (const e of events) {
     await prisma.event.upsert({
       where: { slug: e.slug },
-      update: {},
+      update: { officialUrl: e.officialUrl ?? null },
       create: {
         slug: e.slug,
         title: e.title,
@@ -1239,6 +1253,7 @@ async function main() {
         travelNotes: e.travelNotes ?? null,
         tags: e.tags,
         featured: e.featured,
+        officialUrl: e.officialUrl ?? null,
         archived: false,
         photoMeta: {
           create: {

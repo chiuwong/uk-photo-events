@@ -113,7 +113,7 @@ export default async function Home({ searchParams }: PageProps) {
           <a href="/" className="mt-3 text-sm text-black underline block">Reset filters</a>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="max-w-2xl space-y-4">
           {events.map((e) => <EventCard key={e.id} event={e} />)}
         </div>
       )}
