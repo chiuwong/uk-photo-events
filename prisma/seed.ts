@@ -156,6 +156,102 @@ const legacyEvents: LegacyEvent[] = [
   { id:"london-new-years-eve", name:"London New Year's Eve Fireworks", type:"festival", month:12, day:31, location:"South Bank, London", region:"London", lat:51.5033, lng:-0.1195, popularity:5, description:"London's ticketed New Year's Eve fireworks display launches from the London Eye with the Thames and the Houses of Parliament as backdrop — one of the world's most watched celebrations.", bestTime:"Midnight — secure a ticketed viewing spot or find a vantage point on Waterloo Bridge by 9pm", photoTip:"Waterloo Bridge gives the iconic view: Big Ben left, London Eye centre, South Bank right — use 15s exposure to layer multiple firework bursts.", url:"https://www.london.gov.uk/events/new-years-eve" },
 ];
 
+// ─── Postcodes ────────────────────────────────────────────────────────────────
+
+const POSTCODES: Record<string, string | null> = {
+  "hogmanay-edinburgh":          "EH1 1RF",
+  "up-helly-aa":                 "ZE1 0LB",
+  "burns-night":                 "KA7 4PQ",
+  "red-kite-feeding-wales":      "LD6 5BL",
+  "norfolk-broads-winter-sunrise":"NR12 8AA",
+  "snowdonia-winter-landscape":  "LL55 4TY",
+  "celtic-connections-glasgow":  "G2 3NY",
+  "mari-lwyd":                   "CF34 0SB",
+  "chinese-new-year-london":     "W1D 5PS",
+  "snowdrop-season":             "RG20 8NJ",
+  "york-viking-festival":        "YO1 9WT",
+  "imbolc-glastonbury":          "BA6 8BN",
+  "st-davids-day":               "CF10 3RB",
+  "st-patricks-day-belfast":     "BT1 2DX",
+  "oxford-cambridge-boat-race":  "SW6 3JT",
+  "holi-festival-london":        "W2 2UH",
+  "spring-equinox-stonehenge":   "SP4 7DE",
+  "spring-lambs-yorkshire-dales":"DL8 3RD",
+  "beltane-fire-festival-edinburgh":"EH7 5AA",
+  "bluebells-spring":            "SO21 3BH",
+  "aintree-grand-national":      "L9 5AS",
+  "london-marathon":             "SE1 2UP",
+  "whitby-goth-weekend-april":   "YO21 1LD",
+  "chelsea-flower-show":         "SW3 4LW",
+  "cooper-hill-cheese-rolling":  "GL3 4QB",
+  "oxford-may-morning":          "OX1 4AU",
+  "hay-festival":                "HR3 5BX",
+  "skomer-island-puffins":       "SA62 3BJ",
+  "beltane-glastonbury":         "BA6 8BN",
+  "padstow-obby-oss":            "PL28 8EA",
+  "helston-furry-dance":         "TR13 8ST",
+  "castleton-garland-day":       "S33 8WN",
+  "bass-rock-gannets":           "EH39 4SS",
+  "farne-islands-seabirds":      "NE68 7RN",
+  "trooping-the-colour":         "SW1A 2AX",
+  "changing-of-the-guard":       "SW1A 1AA",
+  "summer-solstice-stonehenge":  "SP4 7DE",
+  "glastonbury-festival":        "BA4 4BY",
+  "puffin-season-handa":         "IV27 4TH",
+  "cambridge-may-week":          "CB2 1ST",
+  "appleby-horse-fair":          "CA16 6XA",
+  "beating-retreat":             "SW1A 2AX",
+  "isle-of-wight-festival":      "PO30 2ND",
+  "henley-royal-regatta":        "RG9 2LY",
+  "swan-upping":                 "RG9 2LY",
+  "durham-miners-gala":          "DH1 5GL",
+  "goodwood-festival-of-speed":  "PO18 0PX",
+  "royal-welsh-show":            "LD2 3SY",
+  "hampton-court-flower-show":   "KT8 9AU",
+  "notting-hill-carnival":       "W10 6RA",
+  "edinburgh-festival-fringe":   "EH1 1QS",
+  "edinburgh-military-tattoo":   "EH1 2NG",
+  "cowes-week":                  "PO31 7AJ",
+  "lonach-highland-gathering":   "AB36 8UP",
+  "national-eisteddfod-wales":   null,
+  "brecon-beacons-milky-way":    "LD3 9LP",
+  "peak-district-heather":       "S32 1BR",
+  "brighton-pride":              "BN1 1NH",
+  "bbc-proms-last-night":        "SW7 2AP",
+  "braemar-highland-gathering":  "AB35 5YX",
+  "great-north-run":             "NE1 7JB",
+  "totally-thames-festival":     "SE1 8XT",
+  "autumn-equinox-stonehenge":   "SP4 7DE",
+  "goodwood-revival":            "PO18 0PX",
+  "abbots-bromley-horn-dance":   "WS15 3BP",
+  "whitby-goth-weekend-october": "YO21 1LD",
+  "halloween-derry":             "BT48 6HH",
+  "robin-hood-pageant":          "NG1 6EL",
+  "autumn-colours-lake-district":"CA12 5DF",
+  "aurora-borealis-scotland":    "KW15 1BU",
+  "isle-of-skye-quiraing":       "IV51 9JU",
+  "red-deer-rut-richmond-park":  "TW10 5HS",
+  "loch-lomond-autumn":          "G83 8NZ",
+  "autumn-colours-new-forest":   "SO43 7NY",
+  "bonfire-night":               null,
+  "lewes-bonfire-night":         "BN7 2LB",
+  "remembrance-sunday":          "SW1A 2AX",
+  "murmuration-starlings":       "BS28 4PH",
+  "st-andrews-day":              "KY16 9UY",
+  "donna-nook-grey-seals":       "LN11 7QN",
+  "tar-barrel-rolling":          "EX11 1BD",
+  "lumiere-durham":              "DH1 3EQ",
+  "burning-of-the-clocks":       "BN2 1TG",
+  "edinburgh-christmas-market":  "EH2 2EJ",
+  "bath-christmas-market":       "BA1 1LT",
+  "york-christmas-market":       "YO1 8ZZ",
+  "birmingham-christmas-market": "B2 5JS",
+  "london-christmas-lights":     "W1C 1JT",
+  "winter-solstice-stonehenge":  "SP4 7DE",
+  "giants-causeway-winter":      "BT57 8SU",
+  "london-new-years-eve":        "SE1 8XT",
+};
+
 // ─── Seed logic ───────────────────────────────────────────────────────────────
 
 async function main() {
@@ -188,6 +284,7 @@ async function main() {
         lng:            e.lng,
         free:           true,
         indoorOutdoor:  "OUTDOOR",
+        postcode:       POSTCODES[e.id] ?? null,
         photoMeta: {
           create: {
             photoPotentialScore:  e.popularity,
@@ -209,6 +306,16 @@ async function main() {
         } : undefined,
       },
     });
+
+    // Set postcode only if not already set
+    const pc = POSTCODES[e.id];
+    if (pc) {
+      await prisma.event.updateMany({
+        where: { slug: e.id, postcode: null },
+        data: { postcode: pc },
+      });
+    }
+
     process.stdout.write(".");
   }
 

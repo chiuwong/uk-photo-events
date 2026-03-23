@@ -54,6 +54,72 @@ const Y = 2026;
 const d = (m: number, day: number) =>
   new Date(`${Y}-${String(m).padStart(2, "0")}-${String(day).padStart(2, "0")}T12:00:00Z`);
 
+const POSTCODES: Record<string, string> = {
+  "haxey-hood-2026":                    "DN9 2HJ",
+  "whittlesea-straw-bear-2026":         "PE7 1AH",
+  "atherstone-ball-game-2026":          "CV9 1AA",
+  "shrove-tuesday-football-ashbourne-2026": "DE6 1GG",
+  "oxford-cambridge-boat-race-2026":    "SW6 3JT",
+  "st-patricks-day-london-2026":        "WC2N 5DN",
+  "surrey-khalsa-day-vaisakhi-2026":    "UB1 1QL",
+  "vaisakhi-trafalgar-square-2026":     "WC2N 5DN",
+  "world-marbles-championship-2026":    "RH10 3LH",
+  "hallaton-bottle-kicking-2026":       "LE16 8UB",
+  "whitby-goth-weekend-april-2026":     "YO21 1LD",
+  "london-marathon-2026":               "SE1 2UP",
+  "padstow-obby-oss-2026":              "PL28 8EA",
+  "helston-flora-day-2026":             "TR13 8ST",
+  "coopers-hill-cheese-rolling-2026":   "GL3 4QB",
+  "jack-in-the-green-hastings-2026":    "TN34 3HH",
+  "woolsack-race-tetbury-2026":         "GL8 8DG",
+  "chelsea-flower-show-2026":           "SW3 4LW",
+  "grovely-rights-day-2026":            "SP3 6LX",
+  "trooping-the-colour-2026":           "SW1A 2AX",
+  "royal-ascot-2026":                   "SL5 7JX",
+  "appleby-horse-fair-2026":            "CA16 6XA",
+  "pride-london-2026":                  "WC2N 5DN",
+  "swan-upping-2026":                   "RG9 2LY",
+  "doggetts-coat-and-badge-2026":       "SE1 2RH",
+  "notting-hill-carnival-2026":         "W10 6RA",
+  "manchester-pride-2026":              "M1 3HY",
+  "abbots-bromley-horn-dance-2026":     "WS15 3BP",
+  "great-north-run-2026":               "NE1 7JB",
+  "ottery-st-mary-tar-barrels-2026":    "EX11 1BD",
+  "diwali-trafalgar-square-2026":       "WC2N 5DN",
+  "nottingham-goose-fair-2026":         "NG7 6ED",
+  "whitby-goth-weekend-october-2026":   "YO21 1LD",
+  "lewes-bonfire-night-2026":           "BN7 2LB",
+  "lords-mayors-show-2026":             "EC2V 7HH",
+  "remembrance-cenotaph-2026":          "SW1A 2AX",
+  "burning-of-the-clocks-brighton-2026":"BN2 1TG",
+  "hocktide-hungerford-2026":           "RG17 0NB",
+  "garland-day-castleton-2026":         "S33 8WN",
+  "bawming-the-thorn-2026":             "WA4 4PQ",
+  "rushbearing-grasmere-2026":          "LA22 9SW",
+  "well-dressing-tissington-2026":      "DE6 1RA",
+  "egremont-crab-fair-2026":            "CA22 2AF",
+  "world-conker-championships-2026":    "NN14 3AB",
+  "allendale-baal-fire-2026":           "NE47 9BJ",
+  "carhampton-wassailing-2026":         "TA24 6NA",
+  "goathland-plough-stots-2026":        "YO22 5LX",
+  "tichborne-dole-2026":                "SO24 0NA",
+  "oxford-may-morning-2026":            "OX1 4AU",
+  "ickwell-may-day-2026":               "SG18 9EF",
+  "bampton-morris-dancing-2026":        "OX18 2JA",
+  "sidmouth-folk-week-2026":            "EX10 8AT",
+  "eid-in-the-square-2026":             "WC2N 5DN",
+  "africa-oye-2026":                    "L17 1AP",
+  "sandwell-birmingham-mela-2026":      "B21 9AB",
+  "africa-utopia-2026":                 "SE1 8XX",
+  "london-mela-2026":                   "W4 2RP",
+  "leeds-west-indian-carnival-2026":    "LS7 3LH",
+  "leeds-black-music-festival-2026":    "LS1 3AD",
+  "brighton-pride-2026":                "BN1 1NH",
+  "japan-matsuri-london-2026":          "WC2N 5DN",
+  "leicester-diwali-2026":              "LE4 6HH",
+  "huddersfield-caribbean-carnival-2026":"HD1 2TG",
+};
+
 const events: ExtraEvent[] = [
 
   // ── JANUARY ────────────────────────────────────────────────────────────────
@@ -2175,6 +2241,7 @@ async function main() {
         featured: e.featured,
         officialUrl: e.officialUrl ?? null,
         imageUrl: e.imageUrl ?? null,
+        postcode: POSTCODES[e.slug] ?? null,
         archived: false,
         photoMeta: {
           create: {
@@ -2217,6 +2284,15 @@ async function main() {
       await prisma.event.updateMany({
         where: { slug: e.slug, imageUrl: null },
         data: { imageUrl: e.imageUrl },
+      });
+    }
+
+    // Set postcode only if not already set
+    const pc = POSTCODES[e.slug];
+    if (pc) {
+      await prisma.event.updateMany({
+        where: { slug: e.slug, postcode: null },
+        data: { postcode: pc },
       });
     }
   }
