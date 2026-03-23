@@ -1750,7 +1750,11 @@ async function main() {
   for (const e of events) {
     const evt = await prisma.event.upsert({
       where: { slug: e.slug },
-      update: { officialUrl: e.officialUrl ?? null, imageUrl: e.imageUrl ?? null },
+      update: {
+        officialUrl: e.officialUrl ?? null,
+        // Only overwrite imageUrl if the seed explicitly provides one — preserve manually-added images
+        ...(e.imageUrl !== undefined && { imageUrl: e.imageUrl }),
+      },
       create: {
         slug: e.slug,
         title: e.title,
