@@ -37,43 +37,78 @@ export default function AdminEventRow({ event }: { event: EventWithMeta }) {
     ? new Date(event.startDate).toLocaleDateString("en-GB", { day: "numeric", month: "short" })
     : "—";
 
+  const statusClass =
+    event.status === "SCHEDULED" ? "bg-green-100 text-green-700" :
+    event.status === "CANCELLED" ? "bg-red-100 text-red-700" :
+    event.status === "UNCONFIRMED" ? "bg-yellow-100 text-yellow-700" :
+    "bg-slate-100 text-slate-600";
+
+  const actions = (
+    <div className="flex items-center gap-3">
+      <button onClick={toggleFeatured} className="text-xs text-slate-400 hover:text-amber-500" title={event.featured ? "Unfeature" : "Feature"}>
+        {event.featured ? "★" : "☆"}
+      </button>
+      <Link href={`/admin/events/${event.id}/edit`} className="text-xs text-indigo-600 hover:text-indigo-800">Edit</Link>
+      <button onClick={toggleArchive} className="text-xs text-slate-400 hover:text-slate-700">
+        {event.archived ? "Restore" : "Archive"}
+      </button>
+      <button onClick={deleteEvent} className="text-xs text-red-400 hover:text-red-600">Delete</button>
+    </div>
+  );
+
   return (
-    <tr className="hover:bg-slate-50">
-      <td className="px-4 py-3">
-        <div className="flex items-center gap-2">
-          {event.featured && <span className="text-amber-500 text-xs">★</span>}
-          <span className="font-medium text-slate-800">{event.title}</span>
-        </div>
-        {event.city && <span className="text-xs text-slate-400">{event.city}</span>}
-      </td>
-      <td className="px-4 py-3 text-slate-600 capitalize">{event.type.toLowerCase()}</td>
-      <td className="px-4 py-3 text-slate-600">{event.region}</td>
-      <td className="px-4 py-3 text-slate-600">{dateStr}</td>
-      <td className="px-4 py-3 text-slate-600">
-        {event.photoMeta?.photoPotentialScore ? `${event.photoMeta.photoPotentialScore}/5` : "—"}
-      </td>
-      <td className="px-4 py-3">
-        <span className={`text-xs px-2 py-0.5 rounded-full ${
-          event.status === "SCHEDULED" ? "bg-green-100 text-green-700" :
-          event.status === "CANCELLED" ? "bg-red-100 text-red-700" :
-          event.status === "UNCONFIRMED" ? "bg-yellow-100 text-yellow-700" :
-          "bg-slate-100 text-slate-600"
-        }`}>
-          {event.status.toLowerCase()}
-        </span>
-      </td>
-      <td className="px-4 py-3">
-        <div className="flex items-center gap-3 justify-end">
-          <button onClick={toggleFeatured} className="text-xs text-slate-400 hover:text-amber-500" title={event.featured ? "Unfeature" : "Feature"}>
-            {event.featured ? "★" : "☆"}
-          </button>
-          <Link href={`/admin/events/${event.id}/edit`} className="text-xs text-indigo-600 hover:text-indigo-800">Edit</Link>
-          <button onClick={toggleArchive} className="text-xs text-slate-400 hover:text-slate-700">
-            {event.archived ? "Restore" : "Archive"}
-          </button>
-          <button onClick={deleteEvent} className="text-xs text-red-400 hover:text-red-600">Delete</button>
-        </div>
-      </td>
-    </tr>
+    <>
+      {/* Mobile card */}
+      <tr className="md:hidden">
+        <td colSpan={7} className="px-4 py-3 border-b border-slate-100">
+          <div className="flex items-start justify-between gap-2">
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                {event.featured && <span className="text-amber-500 text-xs">★</span>}
+                <Link href={`/admin/events/${event.id}/edit`} className="font-medium text-slate-800 hover:text-indigo-600 leading-snug">
+                  {event.title}
+                </Link>
+              </div>
+              <div className="flex items-center gap-2 mt-1 flex-wrap">
+                {event.city && <span className="text-xs text-slate-400">{event.city}</span>}
+                <span className="text-xs text-slate-400">{event.region}</span>
+                <span className="text-xs text-slate-400">{dateStr}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full ${statusClass}`}>
+                  {event.status.toLowerCase()}
+                </span>
+              </div>
+            </div>
+            <div className="shrink-0">{actions}</div>
+          </div>
+        </td>
+      </tr>
+
+      {/* Desktop table row */}
+      <tr className="hidden md:table-row hover:bg-slate-50">
+        <td className="px-4 py-3">
+          <div className="flex items-center gap-2">
+            {event.featured && <span className="text-amber-500 text-xs">★</span>}
+            <Link href={`/admin/events/${event.id}/edit`} className="font-medium text-slate-800 hover:text-indigo-600">
+              {event.title}
+            </Link>
+          </div>
+          {event.city && <span className="text-xs text-slate-400">{event.city}</span>}
+        </td>
+        <td className="px-4 py-3 text-slate-600 capitalize">{event.type.toLowerCase()}</td>
+        <td className="px-4 py-3 text-slate-600">{event.region}</td>
+        <td className="px-4 py-3 text-slate-600">{dateStr}</td>
+        <td className="px-4 py-3 text-slate-600">
+          {event.photoMeta?.photoPotentialScore ? `${event.photoMeta.photoPotentialScore}/5` : "—"}
+        </td>
+        <td className="px-4 py-3">
+          <span className={`text-xs px-2 py-0.5 rounded-full ${statusClass}`}>
+            {event.status.toLowerCase()}
+          </span>
+        </td>
+        <td className="px-4 py-3">
+          <div className="flex items-center gap-3 justify-end">{actions}</div>
+        </td>
+      </tr>
+    </>
   );
 }
