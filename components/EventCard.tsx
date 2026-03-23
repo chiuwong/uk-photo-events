@@ -54,7 +54,7 @@ export default function EventCard({ event }: Props) {
       )}
 
       {/* Body — two columns when photo notes exist */}
-      <div className={`p-6 ${hasPhotoNotes ? "flex flex-col gap-8 md:grid md:grid-cols-[1fr_300px]" : "flex flex-col gap-5"}`}>
+      <div className={`p-6 ${hasPhotoNotes ? "grid grid-cols-1 gap-8 md:grid-cols-[1fr_300px]" : "flex flex-col gap-5"}`}>
 
         {/* LEFT: event info */}
         <div className="flex flex-col gap-4">
