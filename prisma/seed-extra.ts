@@ -46,6 +46,7 @@ interface ExtraEvent {
   safetyNotes?: string;
   previousYearNotes?: string;
   officialUrl?: string;
+  imageUrl?: string;
 }
 
 const Y = 2026;
@@ -85,6 +86,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "The scrum is intense. Stay on the edges unless you want to be pulled in.",
     officialUrl: "https://haxeyhood.co.uk/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/38/Hood_Field_-_geograph.org.uk_-_313686.jpg",
   },
 
   {
@@ -116,6 +118,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     previousYearNotes: "Very accessible — the bear walks right past you on narrow streets. Brilliant for portraiture.",
     officialUrl: "https://strawbear.org.uk/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/78/Colourful_folk_in_Whittlesey_-_Whittlesea_Straw_Bear_Festival_2014_-_geograph.org.uk_-_3814377.jpg",
   },
 
   // ── FEBRUARY ───────────────────────────────────────────────────────────────
@@ -152,6 +155,7 @@ const events: ExtraEvent[] = [
     safetyNotes: "The scrum is serious — clothes get ripped. Stay elevated or on the edges unless prepared to be in it.",
     previousYearNotes: "The toss from the pub window draws a huge crowd. Get there early to stake out a high vantage point on Long Street.",
     officialUrl: "https://www.athherstoneballgame.co.uk/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/59/Atherstone_Ball_game_2012.jpg",
   },
 
   {
@@ -184,6 +188,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "The hug-up (scrum) is intense. River crossings are cold and chaotic. Waterproof your gear.",
     officialUrl: "https://www.ashbourneshrovetide.co.uk/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/01/Ashbourne_Royal_Shrovetide_Football_Goals%2C_old_and_new_-_geograph.org.uk_-_5311930.jpg",
   },
 
   // ── MARCH ──────────────────────────────────────────────────────────────────
@@ -368,6 +373,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     safetyNotes: "Muddy fields. Wear boots. The game crosses streams.",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Hallaton_bottle_kicking_-_geograph.org.uk_-_441676.jpg",
   },
 
   {
@@ -425,6 +431,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     bannersFlagsCandles: true,
     officialUrl: "https://www.londonmarathon.com/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ed/2021_London_Marathon.jpg",
   },
 
   // ── MAY ────────────────────────────────────────────────────────────────────
@@ -460,6 +467,7 @@ const events: ExtraEvent[] = [
     safetyNotes: "Town gets extremely crowded. Book accommodation many months in advance.",
     previousYearNotes: "The narrow streets at night with torch light and singing are extraordinary. Day is more accessible but night has the magic.",
     officialUrl: "https://www.padstowmayday.com/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/21/Red_obby_oss_maiden_20050502.jpg",
   },
 
   {
@@ -491,6 +499,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     previousYearNotes: "The formal morning dress against the slate Cornish streets creates a uniquely English surreal image.",
     officialUrl: "https://www.helstonflora.org.uk/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/40/Leading_the_mid-day_dance_on_Helston_Flora_Day_2016_-_geograph.org.uk_-_4951491.jpg",
   },
 
   {
@@ -523,6 +532,7 @@ const events: ExtraEvent[] = [
     safetyNotes: "The spectator hillside is steep and slippery. The bottom of the hill is dangerous from falling competitors. The event is unofficial — follow safety cordons.",
     previousYearNotes: "Telephoto from the upper spectator bank gives the best compression of the descent. Bottom of hill gives chaotic energy but requires fast reflexes.",
     officialUrl: "https://www.cheese-rolling.co.uk/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b1/A_view_down_Cooper%27s_Hill.jpg",
   },
 
   {
@@ -672,6 +682,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     routeMoving: true,
     previousYearNotes: "The Mall gives the iconic shot of guards against the Buckingham Palace backdrop. Horseguards Arch is good but requires a viewing ticket.",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Trooping_the_Colour_2018_%2813%29.jpg",
   },
 
   {
@@ -732,6 +743,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "Be respectful of privacy — ask before photographing children and wagons. The community is generally welcoming of respectful documentary photographers.",
     previousYearNotes: "The river washing is the definitive shot — horses up to their chests in water with handlers in smart dress.",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Appleby_Horse_Fair_-_geograph.org.uk_-_5877759.jpg",
   },
 
   {
@@ -764,6 +776,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     routeMoving: true,
     protestVisibility: true,
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/94/Pride_London_2019_%2848394464606%29.jpg",
   },
 
   // ── JULY ───────────────────────────────────────────────────────────────────
@@ -797,6 +810,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     ritualSignificance: true,
     previousYearNotes: "The red uniforms against the river and summer trees are classically English. Bridge shots with reflections work beautifully.",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/43/Swan_upping_at_Henley.jpg",
   },
 
   {
@@ -864,6 +878,7 @@ const events: ExtraEvent[] = [
     safetyNotes: "Very crowded — keep bags zipped. Phone pickpocketing is common. Stay aware of your surroundings especially near sound systems.",
     previousYearNotes: "The masquerade costumes on Monday are extraordinary — feathers, sequins, and 6-foot headdresses. Get close on Kensington Park Road before the route fills at midday.",
     officialUrl: "https://nhcarnival.org/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Notting_Hill_Carnival_2018_%283%29.jpg",
   },
 
   {
@@ -927,6 +942,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     previousYearNotes: "The deer antlers against the English countryside at golden hour are extraordinary. Follow the group through the day — they cover many miles visiting farms.",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Horn_Dance%2C_Blithfield_Reservoir_-_2006-09-11.jpg",
   },
 
   {
@@ -987,6 +1003,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "Stand back — the barrels are genuinely on fire. Burning embers fall into the crowd. Wear nothing precious. The crowd presses in close.",
     previousYearNotes: "Slow shutter (1/15s) to blur the fire trails across the frame. Manual exposure. The barrel carriers' faces lit by flame are extraordinary portraits.",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Ottery_St_Mary_%2C_Tar_Barrels_-_geograph.org.uk_-_5190339.jpg",
   },
 
   {
@@ -1079,6 +1096,7 @@ const events: ExtraEvent[] = [
     fireSmokeLight: false,
     previousYearNotes: "October has the best costumes and autumn light. The 199 steps at sunset with costumed goths is one of England's great photographic moments.",
     officialUrl: "https://whitbygothweekend.co.uk/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Whitby_Goth_Weekend_%284550697933%29.jpg",
   },
 
   // ── NOVEMBER ───────────────────────────────────────────────────────────────
@@ -1117,6 +1135,7 @@ const events: ExtraEvent[] = [
     safetyNotes: "Bangers are thrown into the crowd. Wear clothes you don't mind scorching. Be alert to burning debris. Very crowded — plan your exit route in advance.",
     previousYearNotes: "The flaming cross procession is the defining image. Slow shutter to blur torch movement. The town gets extremely crowded after 7pm — position yourself early.",
     officialUrl: "https://lewesbonfirecouncil.org.uk/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Lewes_Bonfire%2C_Lewes_Borough_Bonfire_Society.jpg",
   },
 
   {
@@ -1227,7 +1246,7 @@ async function main() {
   for (const e of events) {
     await prisma.event.upsert({
       where: { slug: e.slug },
-      update: { officialUrl: e.officialUrl ?? null },
+      update: { officialUrl: e.officialUrl ?? null, imageUrl: e.imageUrl ?? null },
       create: {
         slug: e.slug,
         title: e.title,
@@ -1254,6 +1273,7 @@ async function main() {
         tags: e.tags,
         featured: e.featured,
         officialUrl: e.officialUrl ?? null,
+        imageUrl: e.imageUrl ?? null,
         archived: false,
         photoMeta: {
           create: {
