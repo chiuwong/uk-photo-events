@@ -225,6 +225,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "daytime",
     routeMoving: true,
     crowdSizeEstimate: "~250,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Oxford_winning_the_2022_Boat_Race_%28cropped%29.jpg",
   },
 
   {
@@ -258,6 +259,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     bannersFlagsCandles: true,
     crowdSizeEstimate: "~100,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5f/London_Irish_Vintage_Club_in_the_St._Patrick%27s_Day_Parade_-_geograph.org.uk_-_4863140.jpg",
   },
 
   // ── APRIL ──────────────────────────────────────────────────────────────────
@@ -294,6 +296,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     routeMoving: true,
     crowdSizeEstimate: "~10,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Vaisakhi_procession_in_Southall_-_geograph.org.uk_-_2360649.jpg",
   },
 
   {
@@ -325,6 +328,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     ritualSignificance: true,
     crowdSizeEstimate: "~30,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Sikh_festival_of_Vaisakhi%2C_Trafalgar_Square_-_geograph.org.uk_-_2476053.jpg",
   },
 
   {
@@ -355,6 +359,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     costumeCeremonial: true,
     crowdSizeEstimate: "~200",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8b/2025_Chris_Pampel_in_play.jpg",
   },
 
   {
@@ -414,6 +419,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     previousYearNotes: "Golden hour on Saturday at the abbey steps is unmissable. Goths are generally very happy to pose.",
     crowdSizeEstimate: "~15,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/40/History_Of_Guns_-_Del_Alien_-_Whitby_Goth_Weekend_April_2006.jpg",
   },
 
   {
@@ -580,6 +586,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     fireSmokeLight: true,
     crowdSizeEstimate: "~10,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Jack_in_the_Green_Procession_at_Hastings_May_Day_Celebration_2023_%28142%29.jpg",
   },
 
   {
@@ -608,6 +615,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     ritualSignificance: true,
     crowdSizeEstimate: "~2,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/10/Gumstool_Hill_Tetbury_-_geograph.org.uk_-_274671.jpg",
   },
 
   {
@@ -637,6 +645,7 @@ const events: ExtraEvent[] = [
     bestArrivalTime: "Opening at 8am for fewer crowds and better light in the gardens",
     daytimeNightValue: "daytime",
     crowdSizeEstimate: "~150,000 over 5 days",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c9/Main_pavillion_at_RHS_Chelsea_Flower_Show_2009.jpg",
   },
 
   {
@@ -667,6 +676,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     crowdSizeEstimate: "~200",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9e/GrovelyWoods1.JPG",
   },
 
   // ── JUNE ───────────────────────────────────────────────────────────────────
@@ -735,6 +745,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     routeMoving: true,
     crowdSizeEstimate: "~300,000 over 5 days",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Ascot_23062023_2048x1536.jpg",
   },
 
   {
@@ -867,6 +878,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     costumeCeremonial: true,
     crowdSizeEstimate: "~500",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Doggett%27s_Coat_and_Badge_winners_c1901_Stone.jpg",
   },
 
   // ── AUGUST ─────────────────────────────────────────────────────────────────
@@ -937,6 +949,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     bannersFlagsCandles: true,
     crowdSizeEstimate: "~200,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Manchester_Pride_2012_Procession_-_geograph.org.uk_-_3100164.jpg",
   },
 
   // ── SEPTEMBER ──────────────────────────────────────────────────────────────
@@ -1000,6 +1013,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "daytime",
     routeMoving: true,
     crowdSizeEstimate: "~500,000 spectators (57,000 runners)",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Meseret_Defar%2C_Great_North_Run_-_geograph.org.uk_-_3656060.jpg",
   },
 
   // ── OCTOBER ────────────────────────────────────────────────────────────────
@@ -1068,6 +1082,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     previousYearNotes: "The transition from daytime colour to the evening lights is the money shot. Stay until at least 6pm.",
     crowdSizeEstimate: "~50,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Prime_Minister_Keir_Starmer_hosts_Diwali_Reception_%2854103309048%29.jpg",
   },
 
   {
@@ -1099,6 +1114,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "night",
     fireSmokeLight: true,
     crowdSizeEstimate: "~400,000 over 5 days",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/45/Nottingham_Goose_Fair.JPG",
   },
 
   {
@@ -1206,6 +1222,7 @@ const events: ExtraEvent[] = [
     fireSmokeLight: true,
     officialUrl: "https://www.lordmayorsshow.london/",
     crowdSizeEstimate: "~500,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Lord_Mayor%27s_Show_2016_%2830638803490%29.jpg",
   },
 
   {
@@ -1240,6 +1257,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     previousYearNotes: "The veterans' march in the afternoon is the most accessible and emotionally rich photography opportunity. Medals, berets, and poppy wreaths.",
     crowdSizeEstimate: "~15,000 (ceremony area)",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/39/Prime_Minister_Keir_Starmer_-_Remembrance_Sunday_at_the_Cenotaph_-_54910979647.jpg",
   },
 
   {
@@ -1275,6 +1293,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "The paper clock lanterns glow beautifully in the dark streets. Slow sync flash or purely ambient at ISO 3200. The beach bonfire reflects in the sea.",
     officialUrl: "https://www.burningoftheclocks.co.uk/",
     crowdSizeEstimate: "~20,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Burning_the_Clocks%2C_Brighton_%285284087150%29.jpg",
   },
 
   // ── NEW ADDITIONS ───────────────────────────────────────────────────────────
@@ -1306,6 +1325,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     ritualSignificance: true,
     crowdSizeEstimate: "~500",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/af/HUNGERFORD_HOCKTIDE%2C_Hungerford%2C_Berkshire.jpg",
   },
 
   {
@@ -1337,6 +1357,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     crowdSizeEstimate: "~1,000–2,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/78/GarlandKing%26Consort.jpg",
   },
 
   {
@@ -1367,6 +1388,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     bannersFlagsCandles: true,
     crowdSizeEstimate: "~300–500",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e3/New_Village_Sign_Appleton_Thorn_-_geograph.org.uk_-_1613175.jpg",
   },
 
   {
@@ -1399,6 +1421,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     routeMoving: true,
     crowdSizeEstimate: "~1,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Frank_Bramley_%281857-1915%29_-_The_Grasmere_Rushbearing_-_419408_-_National_Trust.jpg",
   },
 
   {
@@ -1426,6 +1449,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "daytime",
     ritualSignificance: true,
     crowdSizeEstimate: "~2,000–5,000 over the week",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/08/Well_Dressing_Tissington_Derbyshire_UK_2007.jpg",
   },
 
   {
@@ -1455,6 +1479,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "both",
     ritualSignificance: true,
     crowdSizeEstimate: "~5,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Wonderferret_gurns_%28cropped%29.jpg",
   },
 
   {
@@ -1484,6 +1509,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     crowdSizeEstimate: "~3,000",
     officialUrl: "https://www.worldconkerchampionships.com/",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0a/The_Conker_Round_-_geograph.org.uk_-_767891.jpg",
   },
 
   {
@@ -1547,6 +1573,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     safetyNotes: "Shotguns are fired through the tree branches at close range — ear protection recommended.",
     crowdSizeEstimate: "~200–400",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Shirehampton_wassail_music.jpg",
   },
 
   {
@@ -1578,6 +1605,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     crowdSizeEstimate: "~200–500",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Goathland1.jpg",
   },
 
   {
@@ -1607,6 +1635,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     ritualSignificance: true,
     crowdSizeEstimate: "~200–400",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/30/Tichborne_dole.jpg",
   },
 
   {
@@ -1643,6 +1672,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     previousYearNotes: "The pre-dawn atmosphere on the bridge is extraordinary — thousands gathered in silence as the first notes come from the tower. Dawn light by 6am in May.",
     crowdSizeEstimate: "~10,000–15,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/80/Magdalen-may-morning-2007-panorama.jpg",
   },
 
   {
@@ -1674,6 +1704,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     bannersFlagsCandles: true,
     crowdSizeEstimate: "~1,000–2,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/96/Maypole_dancing%2C_Ickwell_Green%2C_Bedfordshire_-_geograph.org.uk_-_3445844_%28cropped%29.jpg",
   },
 
   {
@@ -1708,6 +1739,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     previousYearNotes: "The fool's antics between dances are as photogenic as the dancing itself. Follow closely — the side moves constantly through the village.",
     crowdSizeEstimate: "~500–1,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/98/Mosaic_of_Morris_Dancers_etc%2C_Market_Square%2C_Bampton%2C_Oxon_-_geograph.org.uk_-_7966459.jpg",
   },
 
   {
@@ -1741,6 +1773,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "The free outdoor performances on the seafront are as good as the ticketed arena. International groups often dance spontaneously on the prom between sets.",
     officialUrl: "https://sidmouthfolkweek.co.uk/",
     crowdSizeEstimate: "~70,000 over the week",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/40/Pecs%C3%A6tan_Morris_Sidmouth_Folk_Festival_2023.jpg",
   },
 ];
 
