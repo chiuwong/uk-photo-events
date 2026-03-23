@@ -1656,7 +1656,6 @@ const events: ExtraEvent[] = [
     free: true,
     indoorOutdoor: "OUTDOOR",
     lat: 51.5222, lng: -1.2469,
-    venueName: "Magdalen Bridge, Oxford",
     nearestStation: "Oxford",
     routeDescription: "Magdalen Bridge for the tower singing; morris dancing spreads through High Street and surrounding colleges",
     tags: ["may morning", "oxford", "magdalen", "choir", "morris dancing", "may day", "tower", "tradition"],
