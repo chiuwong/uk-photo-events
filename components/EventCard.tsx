@@ -74,7 +74,9 @@ export default function EventCard({ event }: Props) {
                 <> &nbsp;·&nbsp; {[event.venueName, event.city].filter(Boolean).join(", ")}</>
               )}
               {event.county && <> &nbsp;·&nbsp; {event.county}</>}
-              {event.postcode && <> &nbsp;·&nbsp; {event.postcode}</>}
+              {event.postcode && (
+                <> &nbsp;·&nbsp; <a href={`https://maps.google.com/?q=${encodeURIComponent(event.postcode)}`} target="_blank" rel="noopener noreferrer" className="hover:underline">{event.postcode}</a></>
+              )}
             </p>
           </div>
 

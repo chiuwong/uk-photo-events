@@ -71,7 +71,7 @@ export default function AdminEventRow({ event }: { event: EventWithMeta }) {
               </div>
               <div className="flex items-center gap-2 mt-1 flex-wrap">
                 {event.city && <span className="text-xs text-slate-400">{event.city}</span>}
-                {event.postcode && <span className="text-xs text-slate-400">{event.postcode}</span>}
+                {event.postcode && <a href={`https://maps.google.com/?q=${encodeURIComponent(event.postcode)}`} target="_blank" rel="noopener noreferrer" className="text-xs text-slate-400 hover:underline">{event.postcode}</a>}
                 <span className="text-xs text-slate-400">{event.region}</span>
                 <span className="text-xs text-slate-400">{dateStr}</span>
                 <span className={`text-xs px-2 py-0.5 rounded-full ${statusClass}`}>
@@ -94,7 +94,7 @@ export default function AdminEventRow({ event }: { event: EventWithMeta }) {
             </Link>
           </div>
           {event.city && <span className="text-xs text-slate-400">{event.city}</span>}
-          {event.postcode && <span className="text-xs text-slate-400 ml-1">{event.postcode}</span>}
+          {event.postcode && <a href={`https://maps.google.com/?q=${encodeURIComponent(event.postcode)}`} target="_blank" rel="noopener noreferrer" className="text-xs text-slate-400 hover:underline ml-1">{event.postcode}</a>}
         </td>
         <td className="px-4 py-3 text-slate-600 capitalize">{event.type.toLowerCase()}</td>
         <td className="px-4 py-3 text-slate-600">{event.region}</td>
