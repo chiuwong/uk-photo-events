@@ -47,6 +47,7 @@ interface ExtraEvent {
   previousYearNotes?: string;
   officialUrl?: string;
   imageUrl?: string;
+  crowdSizeEstimate?: string;
 }
 
 const Y = 2026;
@@ -87,6 +88,7 @@ const events: ExtraEvent[] = [
     safetyNotes: "The scrum is intense. Stay on the edges unless you want to be pulled in.",
     officialUrl: "https://haxeyhood.co.uk/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/38/Hood_Field_-_geograph.org.uk_-_313686.jpg",
+    crowdSizeEstimate: "~500–1,000",
   },
 
   {
@@ -119,6 +121,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "Very accessible — the bear walks right past you on narrow streets. Brilliant for portraiture.",
     officialUrl: "https://strawbear.org.uk/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/78/Colourful_folk_in_Whittlesey_-_Whittlesea_Straw_Bear_Festival_2014_-_geograph.org.uk_-_3814377.jpg",
+    crowdSizeEstimate: "~5,000",
   },
 
   // ── FEBRUARY ───────────────────────────────────────────────────────────────
@@ -156,6 +159,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "The toss from the pub window draws a huge crowd. Get there early to stake out a high vantage point on Long Street.",
     officialUrl: "https://www.athherstoneballgame.co.uk/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/59/Atherstone_Ball_game_2012.jpg",
+    crowdSizeEstimate: "~2,000–3,000",
   },
 
   {
@@ -189,6 +193,7 @@ const events: ExtraEvent[] = [
     safetyNotes: "The hug-up (scrum) is intense. River crossings are cold and chaotic. Waterproof your gear.",
     officialUrl: "https://www.ashbourneshrovetide.co.uk/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/01/Ashbourne_Royal_Shrovetide_Football_Goals%2C_old_and_new_-_geograph.org.uk_-_5311930.jpg",
+    crowdSizeEstimate: "~5,000–8,000",
   },
 
   // ── MARCH ──────────────────────────────────────────────────────────────────
@@ -219,6 +224,7 @@ const events: ExtraEvent[] = [
     bestArrivalTime: "1pm to secure a towpath spot before crowds build",
     daytimeNightValue: "daytime",
     routeMoving: true,
+    crowdSizeEstimate: "~250,000",
   },
 
   {
@@ -251,6 +257,7 @@ const events: ExtraEvent[] = [
     processionElements: true,
     routeMoving: true,
     bannersFlagsCandles: true,
+    crowdSizeEstimate: "~100,000",
   },
 
   // ── APRIL ──────────────────────────────────────────────────────────────────
@@ -286,6 +293,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     bannersFlagsCandles: true,
     routeMoving: true,
+    crowdSizeEstimate: "~10,000",
   },
 
   {
@@ -316,6 +324,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     bannersFlagsCandles: true,
     ritualSignificance: true,
+    crowdSizeEstimate: "~30,000",
   },
 
   {
@@ -345,6 +354,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "daytime",
     ritualSignificance: true,
     costumeCeremonial: true,
+    crowdSizeEstimate: "~200",
   },
 
   {
@@ -374,6 +384,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "Muddy fields. Wear boots. The game crosses streams.",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Hallaton_bottle_kicking_-_geograph.org.uk_-_441676.jpg",
+    crowdSizeEstimate: "~1,000–2,000",
   },
 
   {
@@ -402,6 +413,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "both",
     costumeCeremonial: true,
     previousYearNotes: "Golden hour on Saturday at the abbey steps is unmissable. Goths are generally very happy to pose.",
+    crowdSizeEstimate: "~15,000",
   },
 
   {
@@ -432,6 +444,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     officialUrl: "https://www.londonmarathon.com/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ed/2021_London_Marathon.jpg",
+    crowdSizeEstimate: "~750,000 spectators (50,000 runners)",
   },
 
   // ── MAY ────────────────────────────────────────────────────────────────────
@@ -468,6 +481,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "The narrow streets at night with torch light and singing are extraordinary. Day is more accessible but night has the magic.",
     officialUrl: "https://www.padstowmayday.com/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/21/Red_obby_oss_maiden_20050502.jpg",
+    crowdSizeEstimate: "~5,000",
   },
 
   {
@@ -500,6 +514,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "The formal morning dress against the slate Cornish streets creates a uniquely English surreal image.",
     officialUrl: "https://www.helstonflora.org.uk/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/40/Leading_the_mid-day_dance_on_Helston_Flora_Day_2016_-_geograph.org.uk_-_4951491.jpg",
+    crowdSizeEstimate: "~10,000",
   },
 
   {
@@ -533,6 +548,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "Telephoto from the upper spectator bank gives the best compression of the descent. Bottom of hill gives chaotic energy but requires fast reflexes.",
     officialUrl: "https://www.cheese-rolling.co.uk/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b1/A_view_down_Cooper%27s_Hill.jpg",
+    crowdSizeEstimate: "~5,000",
   },
 
   {
@@ -563,6 +579,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     fireSmokeLight: true,
+    crowdSizeEstimate: "~10,000",
   },
 
   {
@@ -590,6 +607,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "daytime",
     routeMoving: true,
     ritualSignificance: true,
+    crowdSizeEstimate: "~2,000",
   },
 
   {
@@ -618,6 +636,7 @@ const events: ExtraEvent[] = [
     lensSuggestion: "90mm macro for flower detail; 24–70mm for the garden set pieces",
     bestArrivalTime: "Opening at 8am for fewer crowds and better light in the gardens",
     daytimeNightValue: "daytime",
+    crowdSizeEstimate: "~150,000 over 5 days",
   },
 
   {
@@ -647,6 +666,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     ritualSignificance: true,
     routeMoving: true,
+    crowdSizeEstimate: "~200",
   },
 
   // ── JUNE ───────────────────────────────────────────────────────────────────
@@ -683,6 +703,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     previousYearNotes: "The Mall gives the iconic shot of guards against the Buckingham Palace backdrop. Horseguards Arch is good but requires a viewing ticket.",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Trooping_the_Colour_2018_%2813%29.jpg",
+    crowdSizeEstimate: "~100,000",
   },
 
   {
@@ -713,6 +734,7 @@ const events: ExtraEvent[] = [
     daytimeNightValue: "daytime",
     costumeCeremonial: true,
     routeMoving: true,
+    crowdSizeEstimate: "~300,000 over 5 days",
   },
 
   {
@@ -744,6 +766,7 @@ const events: ExtraEvent[] = [
     safetyNotes: "Be respectful of privacy — ask before photographing children and wagons. The community is generally welcoming of respectful documentary photographers.",
     previousYearNotes: "The river washing is the definitive shot — horses up to their chests in water with handlers in smart dress.",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Appleby_Horse_Fair_-_geograph.org.uk_-_5877759.jpg",
+    crowdSizeEstimate: "~30,000–50,000",
   },
 
   {
@@ -777,6 +800,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     protestVisibility: true,
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/94/Pride_London_2019_%2848394464606%29.jpg",
+    crowdSizeEstimate: "~1 million",
   },
 
   // ── JULY ───────────────────────────────────────────────────────────────────
@@ -811,6 +835,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     previousYearNotes: "The red uniforms against the river and summer trees are classically English. Bridge shots with reflections work beautifully.",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/43/Swan_upping_at_Henley.jpg",
+    crowdSizeEstimate: "~200–500 (riverside)",
   },
 
   {
@@ -841,6 +866,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     ritualSignificance: true,
     costumeCeremonial: true,
+    crowdSizeEstimate: "~500",
   },
 
   // ── AUGUST ─────────────────────────────────────────────────────────────────
@@ -879,6 +905,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "The masquerade costumes on Monday are extraordinary — feathers, sequins, and 6-foot headdresses. Get close on Kensington Park Road before the route fills at midday.",
     officialUrl: "https://nhcarnival.org/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Notting_Hill_Carnival_2018_%283%29.jpg",
+    crowdSizeEstimate: "~2 million over 2 days",
   },
 
   {
@@ -909,6 +936,7 @@ const events: ExtraEvent[] = [
     processionElements: true,
     routeMoving: true,
     bannersFlagsCandles: true,
+    crowdSizeEstimate: "~200,000",
   },
 
   // ── SEPTEMBER ──────────────────────────────────────────────────────────────
@@ -943,6 +971,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     previousYearNotes: "The deer antlers against the English countryside at golden hour are extraordinary. Follow the group through the day — they cover many miles visiting farms.",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Horn_Dance%2C_Blithfield_Reservoir_-_2006-09-11.jpg",
+    crowdSizeEstimate: "~1,000–2,000",
   },
 
   {
@@ -970,6 +999,7 @@ const events: ExtraEvent[] = [
     bestArrivalTime: "9:30am at the Tyne Bridge for the Red Arrows before the 10:30am start",
     daytimeNightValue: "daytime",
     routeMoving: true,
+    crowdSizeEstimate: "~500,000 spectators (57,000 runners)",
   },
 
   // ── OCTOBER ────────────────────────────────────────────────────────────────
@@ -1004,6 +1034,7 @@ const events: ExtraEvent[] = [
     safetyNotes: "Stand back — the barrels are genuinely on fire. Burning embers fall into the crowd. Wear nothing precious. The crowd presses in close.",
     previousYearNotes: "Slow shutter (1/15s) to blur the fire trails across the frame. Manual exposure. The barrel carriers' faces lit by flame are extraordinary portraits.",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Ottery_St_Mary_%2C_Tar_Barrels_-_geograph.org.uk_-_5190339.jpg",
+    crowdSizeEstimate: "~8,000",
   },
 
   {
@@ -1036,6 +1067,7 @@ const events: ExtraEvent[] = [
     fireSmokeLight: true,
     ritualSignificance: true,
     previousYearNotes: "The transition from daytime colour to the evening lights is the money shot. Stay until at least 6pm.",
+    crowdSizeEstimate: "~50,000",
   },
 
   {
@@ -1066,6 +1098,7 @@ const events: ExtraEvent[] = [
     bestArrivalTime: "Dusk — 6–8pm for the rides lit against a darkening sky",
     daytimeNightValue: "night",
     fireSmokeLight: true,
+    crowdSizeEstimate: "~400,000 over 5 days",
   },
 
   {
@@ -1097,6 +1130,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "October has the best costumes and autumn light. The 199 steps at sunset with costumed goths is one of England's great photographic moments.",
     officialUrl: "https://whitbygothweekend.co.uk/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Whitby_Goth_Weekend_%284550697933%29.jpg",
+    crowdSizeEstimate: "~20,000",
   },
 
   // ── NOVEMBER ───────────────────────────────────────────────────────────────
@@ -1136,6 +1170,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "The flaming cross procession is the defining image. Slow shutter to blur torch movement. The town gets extremely crowded after 7pm — position yourself early.",
     officialUrl: "https://lewesbonfirecouncil.org.uk/",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Lewes_Bonfire%2C_Lewes_Borough_Bonfire_Society.jpg",
+    crowdSizeEstimate: "~80,000",
   },
 
   {
@@ -1170,6 +1205,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     fireSmokeLight: true,
     officialUrl: "https://www.lordmayorsshow.london/",
+    crowdSizeEstimate: "~500,000",
   },
 
   {
@@ -1203,6 +1239,7 @@ const events: ExtraEvent[] = [
     ritualSignificance: true,
     routeMoving: true,
     previousYearNotes: "The veterans' march in the afternoon is the most accessible and emotionally rich photography opportunity. Medals, berets, and poppy wreaths.",
+    crowdSizeEstimate: "~15,000 (ceremony area)",
   },
 
   {
@@ -1237,6 +1274,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     previousYearNotes: "The paper clock lanterns glow beautifully in the dark streets. Slow sync flash or purely ambient at ISO 3200. The beach bonfire reflects in the sea.",
     officialUrl: "https://www.burningoftheclocks.co.uk/",
+    crowdSizeEstimate: "~20,000",
   },
 ];
 
@@ -1244,7 +1282,7 @@ async function main() {
   console.log(`Seeding ${events.length} extra events…`);
 
   for (const e of events) {
-    await prisma.event.upsert({
+    const evt = await prisma.event.upsert({
       where: { slug: e.slug },
       update: { officialUrl: e.officialUrl ?? null, imageUrl: e.imageUrl ?? null },
       create: {
@@ -1291,6 +1329,7 @@ async function main() {
             routeMoving: e.routeMoving ?? false,
             safetyNotes: e.safetyNotes ?? null,
             previousYearNotes: e.previousYearNotes ?? null,
+            crowdSizeEstimate: e.crowdSizeEstimate ?? null,
           },
         },
         sources: {
@@ -1301,6 +1340,14 @@ async function main() {
         },
       },
     });
+
+    // Update crowdSizeEstimate on existing photoMeta records
+    if (e.crowdSizeEstimate) {
+      await prisma.photoMeta.updateMany({
+        where: { eventId: evt.id },
+        data: { crowdSizeEstimate: e.crowdSizeEstimate },
+      });
+    }
   }
 
   console.log("Done.");

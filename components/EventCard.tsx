@@ -105,23 +105,28 @@ export default function EventCard({ event }: Props) {
             </div>
           )}
 
-          {/* Official link */}
-          {event.officialUrl && (
-            <a
-              href={event.officialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-black underline underline-offset-2 hover:text-yellow-600 self-start font-medium"
-            >
-              Official website ↗
-            </a>
-          )}
+          {/* Google Images link */}
+          <a
+            href={`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(event.title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-black underline underline-offset-2 hover:text-yellow-600 self-start font-medium"
+          >
+            Image search ↗
+          </a>
         </div>
 
         {/* RIGHT: photography notes */}
         {hasPhotoNotes && (
           <div className="border-l border-gray-200 pl-8 flex flex-col gap-4">
             <p className="text-xs font-bold uppercase tracking-widest text-black">Photography notes</p>
+
+            {pm?.crowdSizeEstimate && (
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wide text-gray-400 mb-0.5">Attendance</p>
+                <p className="text-sm text-gray-700">{pm.crowdSizeEstimate}</p>
+              </div>
+            )}
 
             {pm?.bestArrivalTime && (
               <div>

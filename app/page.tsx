@@ -21,13 +21,12 @@ interface PageProps {
     type?: string;
     month?: string;
     q?: string;
-    minScore?: string;
   }>;
 }
 
 export default async function Home({ searchParams }: PageProps) {
   const params = await searchParams;
-  const { region, type, month, q, minScore } = params;
+  const { region, type, month, q } = params;
 
   const where = {
     archived: false,
@@ -46,9 +45,6 @@ export default async function Home({ searchParams }: PageProps) {
         { city:        { contains: q, mode: "insensitive" as const } },
       ],
     }),
-    ...(minScore && {
-      photoMeta: { photoPotentialScore: { gte: parseInt(minScore) } },
-    }),
   };
 
   const [events, total] = await Promise.all([
@@ -66,9 +62,14 @@ export default async function Home({ searchParams }: PageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
       {/* Header */}
-      <div className="border-b border-black pb-4">
-        <h1 className="text-3xl font-bold text-black tracking-tight">UK Photo Events</h1>
-        <p className="text-sm text-gray-500 mt-1">Festivals, protests, customs &amp; nature moments worth shooting</p>
+      <div className="border-b border-black pb-4 flex items-end justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-black tracking-tight">UK Photo Events</h1>
+          <p className="text-sm text-gray-500 mt-1">Festivals, protests, customs &amp; nature moments worth shooting</p>
+        </div>
+        <a href="/admin/login" className="text-xs font-medium text-gray-400 hover:text-black px-3 py-1 border border-gray-300 hover:border-black transition-colors">
+          Admin
+        </a>
       </div>
 
       {/* Filters */}
@@ -90,12 +91,6 @@ export default async function Home({ searchParams }: PageProps) {
         <select name="month" defaultValue={month ?? ""} className={select}>
           <option value="">All months</option>
           {MONTHS.slice(1).map((m, i) => <option key={m} value={String(i + 1)}>{m}</option>)}
-        </select>
-        <select name="minScore" defaultValue={minScore ?? ""} className={select}>
-          <option value="">Any score</option>
-          <option value="3">★★★+</option>
-          <option value="4">★★★★+</option>
-          <option value="5">★★★★★ only</option>
         </select>
         <button type="submit" className="bg-black text-white text-sm font-medium px-5 py-2 hover:bg-gray-800 transition-colors">
           Filter
