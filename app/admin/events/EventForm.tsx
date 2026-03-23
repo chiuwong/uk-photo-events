@@ -38,6 +38,7 @@ export default function EventForm({ event }: Props) {
     city: event?.city ?? "",
     venueName: event?.venueName ?? "",
     address: event?.address ?? "",
+    postcode: event?.postcode ?? "",
     description: event?.description ?? "",
     startDate: event?.startDate ? new Date(event.startDate).toISOString().slice(0, 10) : "",
     endDate: event?.endDate ? new Date(event.endDate).toISOString().slice(0, 10) : "",
@@ -100,6 +101,7 @@ export default function EventForm({ event }: Props) {
       city: form.city || null,
       venueName: form.venueName || null,
       address: form.address || null,
+      postcode: form.postcode || null,
       description: form.description || null,
       organizerName: form.organizerName || null,
       nearestStation: form.nearestStation || null,
@@ -256,9 +258,15 @@ export default function EventForm({ event }: Props) {
             <input className={input} value={form.venueName} onChange={(e) => setF("venueName", e.target.value)} />
           </div>
         </div>
-        <div>
-          <label className={label}>Address</label>
-          <input className={input} value={form.address} onChange={(e) => setF("address", e.target.value)} />
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className={label}>Address</label>
+            <input className={input} value={form.address} onChange={(e) => setF("address", e.target.value)} />
+          </div>
+          <div>
+            <label className={label}>Postcode</label>
+            <input className={input} value={form.postcode} onChange={(e) => setF("postcode", e.target.value)} placeholder="e.g. SW1A 2AX" />
+          </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
