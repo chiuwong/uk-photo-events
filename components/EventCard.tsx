@@ -74,6 +74,7 @@ export default function EventCard({ event }: Props) {
                 <> &nbsp;·&nbsp; {[event.venueName, event.city].filter(Boolean).join(", ")}</>
               )}
               {event.county && <> &nbsp;·&nbsp; {event.county}</>}
+              {event.postcode && <> &nbsp;·&nbsp; {event.postcode}</>}
             </p>
           </div>
 
