@@ -1542,6 +1542,7 @@ const events: ExtraEvent[] = [
     routeMoving: true,
     safetyNotes: "Burning tar barrels are carried directly overhead through the crowd. Stand back and protect camera from ember fall.",
     crowdSizeEstimate: "~2,000–3,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Allendale_Town_Tar_Bar%27l_-_geograph.org.uk_-_649565.jpg",
   },
 
   {
@@ -1805,6 +1806,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     bannersFlagsCandles: true,
     crowdSizeEstimate: "~30,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/88/Eid_celebration_at_London%27s_Trafalgar_Square_2015_-_01_(21260279742).jpg",
   },
 
   {
@@ -1838,6 +1840,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     officialUrl: "https://www.africaoye.com/",
     crowdSizeEstimate: "~30,000 over 2 days",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/35/Africa_Oye_Festival_Sefton_Park_main_stage_-_geograph.org.uk_-_4569802.jpg",
   },
 
   {
@@ -1869,6 +1872,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     bannersFlagsCandles: true,
     crowdSizeEstimate: "~100,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/99/Big_Johns_Eid_Mela_2014_%2814761658387%29.jpg",
   },
 
   {
@@ -1931,6 +1935,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     bannersFlagsCandles: true,
     crowdSizeEstimate: "~70,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/79/Dancer_London_Mela.jpg",
   },
 
   {
@@ -1965,6 +1970,7 @@ const events: ExtraEvent[] = [
     previousYearNotes: "The costume assembly at Potternewton before the parade starts is the best photography — the bands are accessible and the costumes are extraordinary up close.",
     officialUrl: "https://www.leedscarnival.co.uk/",
     crowdSizeEstimate: "~100,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/62/Leeds_Carnival_2019_(229).jpg",
   },
 
   {
@@ -2030,6 +2036,7 @@ const events: ExtraEvent[] = [
     protestVisibility: true,
     officialUrl: "https://brightonpride.org/",
     crowdSizeEstimate: "~160,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/77/BrightonPride2022.jpg",
   },
 
   {
@@ -2060,6 +2067,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     bannersFlagsCandles: true,
     crowdSizeEstimate: "~20,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/02/Japan_Matsuri_2015_%2822442944745%29.jpg",
   },
 
   {
@@ -2094,6 +2102,7 @@ const events: ExtraEvent[] = [
     costumeCeremonial: true,
     previousYearNotes: "The switch-on moment and subsequent fireworks are the defining shots. Stay for the street celebrations after — the light, colour, and joy continue for hours.",
     crowdSizeEstimate: "~35,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ae/2014_Diwali_lights_along_the_Leicester_Golden_Mile_-_geograph.org.uk_-_4229862.jpg",
   },
 
   {
@@ -2125,6 +2134,7 @@ const events: ExtraEvent[] = [
     bannersFlagsCandles: true,
     routeMoving: true,
     crowdSizeEstimate: "~10,000",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Dancing_Boys_%2814618694546%29.jpg",
   },
 ];
 
@@ -2136,8 +2146,7 @@ async function main() {
       where: { slug: e.slug },
       update: {
         officialUrl: e.officialUrl ?? null,
-        // Only overwrite imageUrl if the seed explicitly provides one — preserve manually-added images
-        ...(e.imageUrl !== undefined && { imageUrl: e.imageUrl }),
+        // imageUrl is intentionally NOT updated here — images set via admin are never overwritten by seed
       },
       create: {
         slug: e.slug,
@@ -2200,6 +2209,14 @@ async function main() {
       await prisma.photoMeta.updateMany({
         where: { eventId: evt.id },
         data: { crowdSizeEstimate: e.crowdSizeEstimate },
+      });
+    }
+
+    // Set imageUrl only if not already set (never overwrite manually-curated images)
+    if (e.imageUrl) {
+      await prisma.event.updateMany({
+        where: { slug: e.slug, imageUrl: null },
+        data: { imageUrl: e.imageUrl },
       });
     }
   }
