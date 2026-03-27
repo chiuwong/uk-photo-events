@@ -61,7 +61,7 @@ export default function CalendarView({ events }: { events: CalEvent[] }) {
       d.setUTCDate(d.getUTCDate() + 1);
       return d.toISOString().slice(0, 10);
     })() : undefined,
-    allDay: e.allDay || !e.startTime,
+    allDay: true,
     backgroundColor: STATUS_COLOR[e.status] ?? "#6b7280",
     borderColor:     STATUS_COLOR[e.status] ?? "#6b7280",
     extendedProps:   { event: e },

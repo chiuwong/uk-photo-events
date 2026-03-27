@@ -32,7 +32,8 @@ export default async function CalendarPage() {
     photoPotentialScore: e.photoMeta?.photoPotentialScore ?? null,
   }));
 
-  const icsUrl = "/api/calendar";
+  const host = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const icsUrl = `${host}/api/calendar`;
   const webcalUrl = icsUrl.replace(/^https?/, "webcal");
 
   return (
