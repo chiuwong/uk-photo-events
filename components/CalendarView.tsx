@@ -84,7 +84,7 @@ export default function CalendarView({ events }: { events: CalEvent[] }) {
           headerToolbar={{
             left:   "prev,next today",
             center: "title",
-            right:  "dayGridMonth",
+            right:  "",
           }}
           dayMaxEvents={4}
           firstDay={1}
