@@ -15,6 +15,8 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^6.1.20",
+    "@fullcalendar/react": "^6.1.20",
     "@prisma/client": "^6.5.0",
     "next": "16.2.1",
     "next-auth": "^4.24.11",

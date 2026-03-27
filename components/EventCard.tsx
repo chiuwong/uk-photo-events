@@ -1,5 +1,6 @@
 "use client";
 import type { Event, PhotoMeta } from "@prisma/client";
+import { googleCalUrl } from "@/lib/calendar";
 
 type EventWithMeta = Event & { photoMeta: PhotoMeta | null };
 
@@ -108,15 +109,36 @@ export default function EventCard({ event }: Props) {
             </div>
           )}
 
-          {/* Google Images link */}
-          <a
-            href={`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(event.title)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-black underline underline-offset-2 hover:text-yellow-600 self-start font-medium"
-          >
-            Image search ↗
-          </a>
+          {/* Links */}
+          <div className="flex flex-wrap gap-4">
+            <a
+              href={googleCalUrl({
+                title:       event.title,
+                startDate:   event.startDate,
+                endDate:     event.endDate,
+                startTime:   event.startTime,
+                endTime:     event.endTime,
+                allDay:      event.allDay,
+                description: event.description,
+                venueName:   event.venueName,
+                city:        event.city,
+                postcode:    event.postcode,
+              })}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-black underline underline-offset-2 hover:text-yellow-600 font-medium"
+            >
+              Add to Google Calendar ↗
+            </a>
+            <a
+              href={`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(event.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-black underline underline-offset-2 hover:text-yellow-600 font-medium"
+            >
+              Image search ↗
+            </a>
+          </div>
         </div>
 
         {/* RIGHT: photography notes */}

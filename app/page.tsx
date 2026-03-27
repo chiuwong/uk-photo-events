@@ -72,6 +72,12 @@ export default async function Home({ searchParams }: PageProps) {
         </a>
       </div>
 
+      {/* View toggle */}
+      <div className="flex gap-1">
+        <a href="/"         className="text-sm px-4 py-1.5 border border-black bg-black text-white">List</a>
+        <a href="/calendar" className="text-sm px-4 py-1.5 border border-gray-300 text-gray-500 hover:text-black">Calendar</a>
+      </div>
+
       {/* Filters */}
       <form method="GET" className="flex flex-wrap gap-2">
         <input
