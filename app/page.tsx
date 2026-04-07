@@ -47,15 +47,23 @@ export default async function Home({ searchParams }: PageProps) {
     }),
   };
 
-  const [events, total] = await Promise.all([
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const [rawEvents, total] = await Promise.all([
     prisma.event.findMany({
       where,
       include: { photoMeta: true },
-      orderBy: [{ featured: "desc" }, { startDate: "asc" }],
-      take: 100,
+      orderBy: { startDate: "asc" },
     }),
     prisma.event.count({ where }),
   ]);
+
+  // Upcoming events first (closest date first), past events appended at the end
+  const events = [
+    ...rawEvents.filter((e) => e.startDate >= today),
+    ...rawEvents.filter((e) => e.startDate < today).reverse(),
+  ];
 
   const select = "border border-gray-300 bg-white text-black text-sm px-3 py-2 focus:outline-none focus:border-black";
 
